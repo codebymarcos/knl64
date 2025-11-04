@@ -23,6 +23,9 @@ _start:
     ; Desabilitar interrupções
     cli
     
+    ; Salvar ponteiro para estrutura Multiboot2 (em EBX)
+    mov [multiboot2_info_ptr], ebx
+    
     ; Configurar stack
     mov esp, stack_top
     
@@ -127,6 +130,9 @@ long_mode_start:
     ; Configurar stack
     mov rsp, stack_top
     
+    ; Passar ponteiro Multiboot2 como primeiro argumento (RDI)
+    mov edi, [multiboot2_info_ptr]
+    
     ; Chamar função principal do kernel
     extern kmain
     call kmain
@@ -146,6 +152,11 @@ gdt64:
 .pointer:
     dw $ - gdt64 - 1
     dq gdt64
+
+section .data
+; Ponteiro para estrutura Multiboot2
+multiboot2_info_ptr:
+    dd 0
 
 section .bss
 align 4096

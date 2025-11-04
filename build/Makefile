@@ -18,11 +18,11 @@ ISO_DIR := $(BUILD_DIR)/isodir
 
 # Arquivos fonte
 ASM_SOURCES := $(SRC_DIR)/boot/boot.asm
-C_SOURCES := $(SRC_DIR)/main.c $(SRC_DIR)/boot/boot.c
+C_SOURCES := $(SRC_DIR)/main.c $(SRC_DIR)/boot/boot.c $(SRC_DIR)/boot/multiboot2.c $(SRC_DIR)/memory/memory.c
 
 # Objetos
 ASM_OBJECTS := $(SRC_DIR)/boot/boot.o
-C_OBJECTS := $(SRC_DIR)/main.o $(SRC_DIR)/boot/boot_c.o
+C_OBJECTS := $(SRC_DIR)/main.o $(SRC_DIR)/boot/boot_c.o $(SRC_DIR)/boot/multiboot2.o $(SRC_DIR)/memory/memory.o
 OBJECTS := $(ASM_OBJECTS) $(C_OBJECTS)
 
 # Alvos
